@@ -12,18 +12,20 @@
       <div class="login-form">
         <h2>Welcome Back 👋</h2>
         <p>Today is a new day. It's your day. You shape it. Sign in to start managing your projects.</p>
-        <form>
+        <form id="loginForm">
           <div class="form-control">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Example@email.com">
+            <input type="email" id="email" placeholder="Example@email.com" required>
           </div>
           <div class="form-control">
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="At least 8 characters">
+            <input type="password" id="password" placeholder="At least 8 characters" required>
           </div>
           <a href="#" class="forgot-password">Forgot Password?</a>
           <button class="main-button" type="submit">Sign in</button>
-        </form><br><br><br>
+        </form>
+        <div id="error-message" style="color: red; margin-top: 10px;"></div>
+        <br><br><br>
         <p>Don't you have an account? <a href="#">Sign up</a></p>
         <p style="color: #959CB6; font-size: medium; text-align: center; margin-top: 100px;">© 2023 ALL RIGHTS RESERVED</p>
       </div>
@@ -32,5 +34,39 @@
       <div class="art"></div>
     </div>
   </div>
+
+  <script>
+    // Array to store logged in users
+    let loggedInUsers = [];
+
+    // Function to handle form submission and simulate login
+    function handleFormSubmit(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get input values
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var errorMessage = document.getElementById('error-message');
+
+      // Simple validation using function
+      if (!validateInput(email, password)) {
+        errorMessage.textContent = 'Please fill in all fields.';
+        return;
+      }
+
+      // Simulate login success and store email in array
+      loggedInUsers.push(email);
+      alert('Login successful! Redirecting...');
+      window.location.href = 'mobile.html';
+    }
+
+    // Function to validate input
+    function validateInput(email, password) {
+      return email.trim() !== '' && password.trim() !== '';
+    }
+
+    // Event listener for form submission
+    document.getElementById('loginForm').addEventListener('submit', handleFormSubmit);
+  </script>
 </body>
 </html>

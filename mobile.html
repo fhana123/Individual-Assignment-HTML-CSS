@@ -16,7 +16,7 @@
                     <p>Today is a new day. It's your day. You shape it. 
                         Sign in to start managing your projects.</p>
                 </div>
-                <form class="form" action="#">
+                <form class="form" id="loginForm">
                     <div class="input">
                         <label for="email">Email</label>
                         <input type="email" id="email" placeholder="Example@email.com">
@@ -29,9 +29,44 @@
                     <button class="main-button" type="submit">Sign in</button>
                 </form>
                 <div class="sign-up-link">Don't you have an account? Sign up</div>
+                <div class="error-message" style="color: red;"></div>
                 <div class="copyright">© 2023 ALL RIGHTS RESERVED</div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Array to store logged in users
+        let loggedInUsers = [];
+
+        // Function to handle form submission and simulate login
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get input values
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var errorMessage = document.querySelector('.error-message');
+
+            // Simple validation using function
+            if (!validateInput(email, password)) {
+                errorMessage.textContent = 'Please fill in all fields.';
+                return;
+            }
+
+            // Simulate login success and store email in array
+            loggedInUsers.push(email);
+            alert('Login successful! Redirecting...');
+            window.location.href = 'desktop.html';
+        }
+
+        // Function to validate input
+        function validateInput(email, password) {
+            return email.trim() !== '' && password.trim() !== '';
+        }
+
+        // Event listener for form submission
+        document.getElementById('loginForm').addEventListener('submit', handleFormSubmit);
+    </script>
 </body>
 </html>
